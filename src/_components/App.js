@@ -22,6 +22,10 @@ class App extends Component {
       <div className="App">
           <p> {this.props.isVisible}</p>
         <header className="App-header">
+          <p>
+            <button type="button" id="Buy" className="btn btn-lg">Buy</button>
+            <button type="button" id="Rent" className="btn btn-lg">Rent</button>
+          </p>
           <img src={logo} className="App-logo" alt="logo" style={inlineStyle}  />
           <p>
             Edit <code>src/App.js</code> and save to reload.

@@ -30,3 +30,12 @@
     transform: rotate(360deg);
   }
 }
+
+#Buy {
+  padding:50px;
+  margin:20px;
+}
+
+#Rent {
+  padding:50px;
+}
