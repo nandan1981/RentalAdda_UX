@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import './App.css';
 import PropsTest from './PropsTest'
-import client from './client'
+//import client from './client'
 
-class App extends React.Component {
+class App extends Component {
 
   constructor(props){
     super(props);
@@ -14,9 +14,10 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-      client({
-          method:'GET',path:'/rentalAdda/home'}).done( response => this.setState())
+      // client({
+      //     method:'GET',path:'/rentalAdda/home'}).done( response => this.setState())
   }
+
 
   render() {
     var inlineStyle = {
