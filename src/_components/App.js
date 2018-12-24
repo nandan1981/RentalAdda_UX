@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import './App.css';
 import PropsTest from './PropsTest'
+import client from './client'
 
-class App extends Component {
+class App extends React.Component {
 
   constructor(props){
     super(props);
@@ -11,6 +12,11 @@ class App extends Component {
           isVisible: true
     }
   };
+
+  componentDidMount() {
+      client({
+          method:'GET',path:'/rentalAdda/home'}).done( response => this.setState())
+  }
 
   render() {
     var inlineStyle = {
@@ -23,8 +29,9 @@ class App extends Component {
           <p> {this.props.isVisible}</p>
         <header className="App-header">
           <p>
-            <button type="button" id="Buy" className="btn btn-lg">Buy</button>
-            <button type="button" id="Rent" className="btn btn-lg">Rent</button>
+
+            <button type="button" id="Buy" className="btn btn-lg" onclick="{}">Buy</button>
+            <button type="button" id="Rent" className="btn btn-lg" onclick="{}">Rent</button>
           </p>
           <img src={logo} className="App-logo" alt="logo" style={inlineStyle}  />
           <p>
