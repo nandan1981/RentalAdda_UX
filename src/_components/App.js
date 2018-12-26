@@ -31,8 +31,8 @@ class App extends Component {
         <header className="App-header">
           <p>
 
-            <button type="button" id="Buy" className="btn btn-lg" onclick="{}">Buy</button>
-            <button type="button" id="Rent" className="btn btn-lg" onclick="{}">Rent</button>
+            <button type="button" id="Buy" className="btn btn-lg" onClick="{}">Buy</button>
+            <button type="button" id="Rent" className="btn btn-lg" onClick="{}">Rent</button>
           </p>
           <img src={logo} className="App-logo" alt="logo" style={inlineStyle}  />
           <p>

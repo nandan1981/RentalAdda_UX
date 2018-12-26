@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chai": "^4.2.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-popup": "^0.9.3",
@@ -21,8 +22,9 @@
     ">0.2%",
     "not dead",
     "not ie <= 11",
-    "not op_mini all" ]
-,"env": {
+    "not op_mini all"
+  ],
+  "env": {
     "amd": true
+  }
 }
- }
