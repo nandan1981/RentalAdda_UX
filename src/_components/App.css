@@ -39,3 +39,14 @@
 #Rent {
   padding:50px;
 }
+
+.Buy {
+    background-color: #282c34;
+    min-height: 100vh;
+    text-decoration: white;
+}
+
+.Rent {
+    background-color: #282c34;
+    min-height: 100vh;
+}

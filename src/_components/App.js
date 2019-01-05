@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import './App.css';
-import PropsTest from './PropsTest'
-//import client from './client'
 
 class App extends Component {
 
@@ -14,14 +12,21 @@ class App extends Component {
            isShowBuyPage : false,
           isShowRentPage : false
     }
-    this.enableBuyPage = this.enableBuyPage.bind(this);
-    this.enableRentPage = this.enableRentPage.bind(this);
+    this.enableMainPage = this.enableMainPage.bind(this);
+     this.enableBuyPage = this.enableBuyPage.bind(this);
+     this.enableRentPage = this.enableRentPage.bind(this);
   };
 
   componentDidMount() {
       // client({
       //     method:'GET',path:'/rentalAdda/home'}).done( response => this.setState())
   }
+
+    enableMainPage(){
+        this.setState({isShowMainPage: true,
+            isShowBuyPage: false,
+            isShowRentPage: false});
+    }
 
     enableRentPage(){
         this.setState({isShowMainPage: false,
@@ -35,51 +40,17 @@ class App extends Component {
             isShowRentPage: false});
     }
 
-    buyPage(){
-        return (
-            <div className="App">
-
-                <header className="App-header">
-                    <form>
-                        <div className="App">
-                            <h2> Buy a Product</h2>
-                            <input type='Product Title' className="mm-popup__box__header__title" placeholder='Enter Title' required/>
-                            <div>
-                                <button type="submit" className="btn btn-sm">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </header>
-            </div>
-        );
-    }
-
-    rentPage(){
-        return (
-            <div className="App">
-
-                <header className="App-header">
-                    <form>
-                        <div className="App">
-                            <h2> Rent a Product</h2>
-                            <input type='Product Title' className="mm-popup__box__header__title" placeholder='Enter Title' required/>
-                            <div>
-                                <button type="submit" className="btn btn-sm">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </header>
-            </div>
-        );
-    }
-
     render() {
-
         var inlineStyle = {display: this.state.isVisible ? "block" : "none" };
-            const mainPage = (
+        let mainPage = this.state.isShowMainPage;
+        let buyPage = this.state.isShowBuyPage;
+        let rentPage = this.state.isShowRentPage;
+        var Page = null;
+
+        if(mainPage){
+
+             Page = (
                 <div className="App">
-
-
                     <p> {this.props.isVisible}</p>
                     <header className="App-header">
                         <p>
@@ -101,15 +72,102 @@ class App extends Component {
                         >
                             Learn React . Build RentalAdda
                         </a>
-                        <PropsTest/>
                     </header>
                 </div>
             );
+        }else if(buyPage){
+            Page = (
+                <div className="Buy">
+                    <p> {this.props.isVisible}</p>
+                    <header>
+                        <form>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
+                                <div className="col-sm-10">
+                                    <input type="email" className="form-control" id="inputEmail3" placeholder="Email" />
+                                </div>
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
+                                <div className="col-sm-10">
+                                    <input type="password" className="form-control mb-2 mr-sm-2" id="inputPassword3"
+                                           placeholder="Password" />
+                                </div>
+                            </div>
+                            <fieldset className="form-group">
+                                <div className="row">
+                                    <legend className="col-form-label col-sm-2 pt-0">Radios</legend>
+                                    <div className="col-sm-10">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="radio" name="gridRadios"
+                                                   id="gridRadios1" value="option1" checked />
+                                            <label className="form-check-label" htmlFor="gridRadios1">
+                                                First radio
+                                            </label>
+                                        </div>
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="radio" name="gridRadios"
+                                                   id="gridRadios2" value="option2" />
+                                            <label className="form-check-label" htmlFor="gridRadios2">
+                                                Second radio
+                                            </label>
+                                        </div>
+                                        <div className="form-check disabled">
+                                            <input className="form-check-input" type="radio" name="gridRadios"
+                                                   id="gridRadios3" value="option3" disabled />
+                                            <label className="form-check-label" htmlFor="gridRadios3">
+                                                Third disabled radio
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div className="form-group row">
+                                <div className="col-sm-2">Checkbox</div>
+                                <div className="col-sm-10">
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="checkbox" id="gridCheck1" />
+                                        <label className="form-check-label" htmlFor="gridCheck1">
+                                            Example checkbox
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group row">
+                                <div className="col-sm-10">
+                                    <button type="submit" className="btn btn-primary">Sign in</button>
+                                </div>
+                            </div>
+                        </form>
+                    </header>
+                    <button type="button" id="mainPage" className="btn" onClick={this.enableMainPage}>back
+                    </button>
+                </div>
+
+            );
+        }else if (rentPage){
+          Page = (
+                <div  className="Rent">
+                    <header className="App-header">
+                        <form>
+                            <div>
+                                <h2> Rent a Product</h2>
+                                <input type='Product Title' className="mm-popup__box__header__title" placeholder='Enter Title' required/>
+                                <div>
+                                    <button type="submit" className="btn btn-sm">Submit</button>
+                                </div>
+                            </div>
+                            <button type="button" id="mainPage" className="btn" onClick={this.enableMainPage}>back
+                            </button>
+                        </form>
+                    </header>
+
+                </div>
+            );
+        }
 
             return( <div>
-                {this.state.isShowBuyPage ? this.buyPage() : mainPage}
-                {this.state.isShowMainPage ? mainPage : this.buyPage()}
-                {this.state.isShowRentPage ? this.rentPage() : mainPage}
+                {Page}
             </div> );
 
         }
