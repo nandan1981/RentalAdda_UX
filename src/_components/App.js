@@ -10,7 +10,8 @@ class App extends Component {
           isVisible: true,
           isShowMainPage : true,
            isShowBuyPage : false,
-          isShowRentPage : false
+          isShowRentPage : false,
+            pictures:[]
     }
     this.enableMainPage = this.enableMainPage.bind(this);
      this.enableBuyPage = this.enableBuyPage.bind(this);
@@ -18,8 +19,19 @@ class App extends Component {
   };
 
   componentDidMount() {
-      // client({
-      //     method:'GET',path:'/rentalAdda/home'}).done( response => this.setState())
+      fetch('https://randomuser.me/api/?results=500')
+          .then(results => {
+              return results.json();
+          }).then(data => {
+          let pictures = data.results.map((pic) => {
+              return (
+                  <div key={pic.results}>
+                      <img src={pic.picture.medium}/>
+                  </div>
+              )
+          })
+          this.setState({pictures: pictures});
+      })
   }
 
     enableMainPage(){
@@ -45,7 +57,7 @@ class App extends Component {
         let mainPage = this.state.isShowMainPage;
         let buyPage = this.state.isShowBuyPage;
         let rentPage = this.state.isShowRentPage;
-        var Page = null;
+        let Page = null;
 
         if(mainPage){
 
@@ -77,26 +89,34 @@ class App extends Component {
             );
         }else if(buyPage){
             Page = (
-                <div className="Buy">
+                <div className="Buy align-middle text-white">
                     <p> {this.props.isVisible}</p>
                     <header>
                         <form>
                             <div className="form-group row">
-                                <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
-                                <div className="col-sm-10">
-                                    <input type="email" className="form-control" id="inputEmail3" placeholder="Email" />
+                                <select className="row">
+                                    <option value="action cameras">Action Cameras</option>
+                                    <option value="consoles">Consoles</option>
+                                    <option value="games">Games</option>
+                                    <option value="drones">Drones</option>
+                                </select>
+                            </div>
+                            <div className="form-group row">
+                                <label htmlFor="inputEmail3" className="col-sm-2 col-form-label ">Email</label>
+                                <div className="col-sm-2">
+                                    <input type="email" className="form-control " id="inputEmail3" placeholder="Email" />
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-                                <div className="col-sm-10">
+                                <label htmlFor="inputPassword3" className="col-sm-2 col-form-label text-white">Password</label>
+                                <div className="col-sm-1">
                                     <input type="password" className="form-control mb-2 mr-sm-2" id="inputPassword3"
                                            placeholder="Password" />
                                 </div>
                             </div>
                             <fieldset className="form-group">
                                 <div className="row">
-                                    <legend className="col-form-label col-sm-2 pt-0">Radios</legend>
+                                    <legend className="col-form-label col-sm-2">Radios</legend>
                                     <div className="col-sm-10">
                                         <div className="form-check">
                                             <input className="form-check-input" type="radio" name="gridRadios"
@@ -147,21 +167,23 @@ class App extends Component {
             );
         }else if (rentPage){
           Page = (
-                <div  className="Rent">
-                    <header className="App-header">
-                        <form>
-                            <div>
-                                <h2> Rent a Product</h2>
-                                <input type='Product Title' className="mm-popup__box__header__title" placeholder='Enter Title' required/>
-                                <div>
-                                    <button type="submit" className="btn btn-sm">Submit</button>
-                                </div>
-                            </div>
-                            <button type="button" id="mainPage" className="btn" onClick={this.enableMainPage}>back
-                            </button>
-                        </form>
-                    </header>
-
+              <div  className="Container2">
+                <div  className="Container1">
+                    {/*<header className="App-header">*/}
+                        {/*<form>*/}
+                        {/*<div>*/}
+                            {/*<h2> Rent a Product</h2>*/}
+                            {/*<input type='Product Title' className="mm-popup__box__header__title" placeholder='Enter Title' required/>*/}
+                            {/*<div>*/}
+                                {/*<button type="submit" className="btn btn-sm">Submit</button>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
+                        {/*<button type="button" id="mainPage" className="btn btn-primary" onClick={this.enableMainPage}>back*/}
+                        {/*</button>*/}
+                    {/*</form>*/}
+                    {/*</header>*/}
+                    {this.state.pictures}
+                </div>
                 </div>
             );
         }
