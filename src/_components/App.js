@@ -19,13 +19,13 @@ class App extends Component {
   };
 
   componentDidMount() {
-      fetch('https://randomuser.me/api/?results=500')
-          .then(results => {
-              return results.json();
+      fetch('http://localhost:8082/RentalAddaRest/customers.htm')
+          .then(customers => {
+              return customers.json();
           }).then(data => {
-          let pictures = data.results.map((pic) => {
+          let pictures = data.customers.map((pic) => {
               return (
-                  <div key={pic.results}>
+                  <div key={pic.customers}>
                       <img src={pic.picture.medium}/>
                   </div>
               )
@@ -94,6 +94,8 @@ class App extends Component {
                     <header>
                         <form>
                             <div className="form-group row">
+                                <br/><br/>
+                                <p>Select category to buy</p>
                                 <select className="row">
                                     <option value="action cameras">Action Cameras</option>
                                     <option value="consoles">Consoles</option>
@@ -102,62 +104,13 @@ class App extends Component {
                                 </select>
                             </div>
                             <div className="form-group row">
-                                <label htmlFor="inputEmail3" className="col-sm-2 col-form-label ">Email</label>
+                                <label htmlFor="inputEmail3" className="col-sm-2 col-form-label ">Search</label>
                                 <div className="col-sm-2">
-                                    <input type="email" className="form-control " id="inputEmail3" placeholder="Email" />
+                                    <input type="email" className="form-control " id="inputEmail3" placeholder="Search" />
                                 </div>
                             </div>
-                            <div className="form-group row">
-                                <label htmlFor="inputPassword3" className="col-sm-2 col-form-label text-white">Password</label>
-                                <div className="col-sm-1">
-                                    <input type="password" className="form-control mb-2 mr-sm-2" id="inputPassword3"
-                                           placeholder="Password" />
-                                </div>
-                            </div>
-                            <fieldset className="form-group">
-                                <div className="row">
-                                    <legend className="col-form-label col-sm-2">Radios</legend>
-                                    <div className="col-sm-10">
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="radio" name="gridRadios"
-                                                   id="gridRadios1" value="option1" checked />
-                                            <label className="form-check-label" htmlFor="gridRadios1">
-                                                First radio
-                                            </label>
-                                        </div>
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="radio" name="gridRadios"
-                                                   id="gridRadios2" value="option2" />
-                                            <label className="form-check-label" htmlFor="gridRadios2">
-                                                Second radio
-                                            </label>
-                                        </div>
-                                        <div className="form-check disabled">
-                                            <input className="form-check-input" type="radio" name="gridRadios"
-                                                   id="gridRadios3" value="option3" disabled />
-                                            <label className="form-check-label" htmlFor="gridRadios3">
-                                                Third disabled radio
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div className="form-group row">
-                                <div className="col-sm-2">Checkbox</div>
-                                <div className="col-sm-10">
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="checkbox" id="gridCheck1" />
-                                        <label className="form-check-label" htmlFor="gridCheck1">
-                                            Example checkbox
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group row">
-                                <div className="col-sm-10">
-                                    <button type="submit" className="btn btn-primary">Sign in</button>
-                                </div>
-                            </div>
+                            <p>Available Products</p>
+                            {this.state.pictures}
                         </form>
                     </header>
                     <button type="button" id="mainPage" className="btn" onClick={this.enableMainPage}>back
