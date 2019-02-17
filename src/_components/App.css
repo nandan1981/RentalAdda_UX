@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #FFFFFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@
 }
 
 .Buy {
-    background-color: #282c34;
+    background-color: #FFFFFF;
     min-height: 100vh;
     text-decoration: white;
 }
@@ -49,4 +49,22 @@
 .Rent {
     background-color: #282c34;
     min-height: 100vh;
+}
+
+.navbar-header-buy{
+  color:white;
+  font-weight:bold;
+  font-size:xx-large;
+ width:100%;
+}
+
+.logo{
+  width:42px;
+  height:50px;
+}
+
+.navbar-right{
+  text-align: right;
+  font-weight: normal;
+  font-size: small;
 }
