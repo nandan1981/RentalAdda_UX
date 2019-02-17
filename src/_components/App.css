@@ -41,13 +41,15 @@
 }
 
 .Buy {
+    margin: 5%;
     background-color: #FFFFFF;
     min-height: 100vh;
     text-decoration: white;
 }
 
 .Rent {
-    background-color: #282c34;
+    margin: 5%;
+    background-color: #FFFFFF;
     min-height: 100vh;
 }
 
@@ -66,5 +68,10 @@
 .navbar-right{
   text-align: right;
   font-weight: normal;
-  font-size: small;
+  font-size: medium;
+}
+
+.navbar-nav{
+  font-weight: normal;
+  font-size: medium;
 }
