@@ -1,3 +1,9 @@
+@import "partial";
+
+$background-color: #FFFFFF;
+$font-size: small;
+$page-padding: 50px;
+
 .App {
   text-align: center;
 }
@@ -8,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #FFFFFF;
+  background-color: $background-color;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -32,32 +38,32 @@
 }
 
 #Buy {
-  padding:50px;
+  padding:$page-padding;
   margin:20px;
 }
 
 #Rent {
-  padding:50px;
+  padding:$page-padding;
 }
 
 .Buy {
-    margin: 5%;
-    background-color: #FFFFFF;
-    min-height: 100vh;
-    text-decoration: white;
+  margin: 5%;
+  background-color: $background-color;
+  min-height: 100vh;
+  text-decoration: white;
 }
 
 .Rent {
-    margin: 5%;
-    background-color: #FFFFFF;
-    min-height: 100vh;
+  margin: 5%;
+  background-color: $background-color;
+  min-height: 100vh;
 }
 
 .navbar-header-buy{
-  color:white;
+  color:$background-color;
   font-weight:bold;
   font-size:xx-large;
- width:100%;
+  width:100%;
 }
 
 .logo{
@@ -68,10 +74,10 @@
 .navbar-right{
   text-align: right;
   font-weight: normal;
-  font-size: medium;
+  font-size: $font-size;
 }
 
 .navbar-nav{
   font-weight: normal;
-  font-size: medium;
+  font-size: $font-size;
 }

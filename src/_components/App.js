@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
 
@@ -9,11 +9,14 @@ class App extends Component {
     this.state = {
           isVisible: true,
           isShowMainPage : true,
-           isShowBuyPage : false,
+          isShowBuyPage : false,
           isShowRentPage : false,
-            pictures:[]
+          isShowSignUpPage : false,
+            pictures:[],
+            information:[]
     }
-    this.enableMainPage = this.enableMainPage.bind(this);
+     this.appUrl="http://localhost:9202";
+     this.enableMainPage = this.enableMainPage.bind(this);
      this.enableBuyPage = this.enableBuyPage.bind(this);
      this.enableRentPage = this.enableRentPage.bind(this);
      this.showSignUpPage = this.showSignUpPage.bind(this);
@@ -21,7 +24,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-      fetch('http://localhost:9202/fetchRentalData/Nandan', {
+      fetch(this.appUrl+'/fetchRentalData/Nandan', {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "no-" +
           "cors", // no-cors, cors, *same-origin
@@ -49,26 +52,40 @@ class App extends Component {
     enableMainPage(){
         this.setState({isShowMainPage: true,
             isShowBuyPage: false,
-            isShowRentPage: false});
+            isShowRentPage: false,
+        isShowSignUpPage:false});
+    }
+
+    showRentalAddaInformation(string){
+        fetch( this.appUrl+ '/fetchRentalInformation/'+string, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(result=>result.json())
+            .then(information=>this.setState({information}))
+
     }
 
     enableRentPage(){
         this.setState({isShowMainPage: false,
             isShowBuyPage: false,
-            isShowRentPage: true});
+            isShowRentPage: true,
+            isShowSignUpPage:false});
     }
 
     enableBuyPage(){
         this.setState({isShowMainPage: false,
             isShowBuyPage: true,
-            isShowRentPage: false});
+            isShowRentPage: false,
+            isShowSignUpPage:false});
     }
 
     showSignUpPage(){
-      alert('in here');
         this.setState({isShowMainPage: false,
-            isShowBuyPage: true,
-            isShowRentPage: false});
+            isShowBuyPage: false,
+            isShowRentPage: false,
+            isShowSignUpPage:true});
     }
 
     openPopupLogin(){
@@ -85,7 +102,7 @@ class App extends Component {
                     <img src={process.env.PUBLIC_URL +'/logo_nodesc.png'} className="logo"/>
                 </div>
                 <ul className="nav navbar-nav">
-                    <li className="active"><a href="#">Home</a></li>
+                    <li className="active"><a href="#" onClick={this.enableMainPage}>Home</a></li>
                     <li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown"
                                                 href="#"><span className="caret"></span></a>
                         <ul className="dropdown-menu">
@@ -128,6 +145,7 @@ class App extends Component {
         let mainPage = this.state.isShowMainPage;
         let buyPage = this.state.isShowBuyPage;
         let rentPage = this.state.isShowRentPage;
+        let showSignUpPage = this.state.isShowSignUpPage;
         let Page = null;
 
         if(mainPage){
@@ -214,6 +232,10 @@ class App extends Component {
               </div>
 
           );
+        }else if(showSignUpPage){
+          Page=( <div className="Rent align-middle text-white">
+                Sign Up
+            </div>);
         }
 
             return( <div>
